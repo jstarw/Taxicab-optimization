@@ -42,10 +42,10 @@ for d = weekday_choices % Row
     for t = time_choices % Column
         if time_slot_available(d,t) == 0 % Mark as un-available
             % Find the timeslot and weekday that cooresponding to that hour
-            timeslot_to_be_rm = find(time_choices==t);
+            timeslot_to_be_rm = t;%find(time_choices==t-1);
             weekday_to_be_rm = d;
             % Mark the indices of the elements to be removed
-            indices_to_be_rm(Weekday == weekday_to_be_rm & Hour == timeslot_to_be_rm) = 1;
+            indices_to_be_rm(Weekday == weekday_to_be_rm-1 & Hour == timeslot_to_be_rm-1) = 1;
         end
     end
 end
@@ -132,11 +132,11 @@ for i = 1:sum(x)
     
     weekday_name = day(day_number_benchmark+select_day,'name');
     timeslot = timeslots(select_time +1);
-%     string_output = ['Recommendation ' num2str(i) ': Region ' num2str(select_region) ', ' timeslot ', ' weekday_name];
+    string_output = ['Recommendation ' num2str(i) ': Region ' num2str(select_region) ', ' timeslot ', ' weekday_name];
     
-    p_new = P_new_customer(select_list(i));
-    min_trip = Min_Trips(select_list(i));
-    string_output = ['Recommendation ' num2str(i) ': Region ' num2str(select_region) ', ' timeslot ', ' weekday_name ', ' p_new  ', ' min_trip];
+%     p_new = P_new_customer(select_list(i));
+%     min_trip = Min_Trips(select_list(i));
+%     string_output = ['Recommendation ' num2str(i) ': Region ' num2str(select_region) ', ' timeslot ', ' weekday_name ', ' p_new  ', ' min_trip];
     
     disp(string_output)
 end
